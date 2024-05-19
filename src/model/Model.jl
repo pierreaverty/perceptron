@@ -18,7 +18,13 @@ println("Bias: ", perceptron.b)
 """
 module Model
 
-export Perceptron, init_perceptron
+include("../utils/Symbol.jl")
+
+# --------------------
+using .Symbol
+# --------------------
+
+export Perceptron, init_perceptron, P, ɸ
 
 """
     Perceptron(W::Vector{Float64}, b::Float64)
@@ -65,6 +71,60 @@ function init_perceptron(;
     b = randn()
 
     return Perceptron(W, b)
+end
+
+"""
+  P(W::Vector{Float64}, X::Vector{Float64}, b::Float64) -> Int64
+
+Predicts the output of a perceptron model.
+
+# Arguments
+- `W::Vector{Float64}`: Weight vector of the perceptron.
+- `X::Vector{Float64}`: Input vector.
+- `b::Float64`: Bias of the perceptron.
+
+# Returns
+- `Int64`: Output of the perceptron model.
+
+# Example
+
+```julia
+
+W = [0.1, 0.2]
+X = [1.0, 2.0]
+b = 0.3
+output = P(W, X, b)
+```
+"""
+function P(
+    W::Vector{Float64},
+    X::Vector{Float64},
+    b::Float64
+)::Int64
+    return ɸ(∑(W, X) + b)
+end
+
+"""
+  ɸ(x::Float64) -> Float64
+
+Heaviside step function as an activation function.
+
+# Arguments
+- `x::Float64`: Input value.
+
+# Returns
+- `Float64`: Output value of the Heaviside step function.
+
+# Example
+
+```julia
+output = ɸ(0.5)
+```
+"""
+function ɸ(
+    x::Float64
+)::Int64
+    return x > 0 ? 1 : 0
 end
 
 end

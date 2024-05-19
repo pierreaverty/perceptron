@@ -1,15 +1,14 @@
 include("../../src/model/Model.jl")
-
+include("../../src/utils/Symbol.jl")
 # --------------------
 using Test
 using ..Model
+using .Symbol
 # --------------------
 
-@testset "Perceptron" begin
+@testset "Model" begin
     #=
-    Test the Perceptron struct.
-
-    The function should return a Perceptron struct with n weights and a bias.
+    Test the Model module.
     =#
     @testset "init_perceptron" begin
         #=
@@ -25,10 +24,48 @@ using ..Model
         println("W = $(perceptron.W)")
         println("b = $(perceptron.b)")
 
-        # Test the type of the returned object
+        # Test the type of the returned object and the size of the weights
         @test perceptron isa Perceptron
         @test length(perceptron.W) == 2
         @test perceptron.b isa Float64
         @test all(x -> x isa Float64, perceptron.W)
     end
+    @testset "ɸ" begin
+        #=
+        Test the ɸ function.
+
+        The function should return 1 if the input is greater than 0, otherwise 0.
+        =#
+        # Compute the dot product
+        z = 0.59
+        expected_result = z > 0 ? 1 : 0
+        computed_result = ɸ(z)
+
+        println("ɸ($z) = $computed_result")
+
+        # Test the type of the returned object
+        @test computed_result isa Int
+    end
+    @testset "P" begin
+        #=
+        Test the prediction function.
+
+        The function should return the dot product of the weights and the input vector plus the bias.
+        =#
+        # Initialize a perceptron
+        perceptron = init_perceptron(n=2)
+
+        # Initialize a vector
+        X = [1.0, 2.0]
+
+        # Compute the dot product
+        expected_result = ɸ(∑(perceptron.W, X) + perceptron.b)
+        computed_result = P(perceptron.W, X, perceptron.b)
+        println("P($(perceptron.W), $(X)) = $computed_result")
+
+        # Test the type of the returned object and the value
+        @test computed_result isa Int64
+        @test computed_result == expected_result
+    end
+
 end
