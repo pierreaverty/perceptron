@@ -1,0 +1,7 @@
+name = "PerceptronJulia"
+uuid = "2ebbf25f-df2f-4140-828a-137ae805396b"
+authors = ["Pierre Averty <pierre.averty2001@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
