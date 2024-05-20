@@ -1,31 +1,9 @@
-"""
-    module Model
-
-This module defines a simple perceptron model for binary classification.
-
-# Exported Types and Functions
-- `Perceptron`: A struct representing the perceptron model.
-- `init_perceptron`: A function to initialize the perceptron with random weights and bias.
-
-# Example Usage
-```julia
-using .Model
-
-# Initialize a perceptron with 2 input features
-perceptron = init_perceptron(n=2)
-println("Weights: ", perceptron.W)
-println("Bias: ", perceptron.b)
-"""
 module Model
-
 include("../utils/Symbol.jl")
-
 # --------------------
 using .Symbol
 # --------------------
-
 export Perceptron, init_perceptron, P, ɸ, update!
-
 """
     Perceptron(W::Vector{Float64}, b::Float64)
 

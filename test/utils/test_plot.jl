@@ -1,11 +1,7 @@
-include("../../src/utils/Plot.jl")
-include("../../src/data/Data.jl")
 # --------------------
-using Test
 using .Plot
 using .Data
 # --------------------
-
 @testset "Plot" begin
     #=
     Test the Plot module.
@@ -22,6 +18,6 @@ using .Data
         # Plot the dataset
         plot_dataset(X, Y)
 
-        @test isfile("val/dataset/dataset.png")
+        @test isfile("../val/dataset/dataset.png")
     end
 end

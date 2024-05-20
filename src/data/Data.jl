@@ -1,7 +1,6 @@
 module Data
 
 export generate_data
-
 """
 generate_data(n_samples::Int64=100, σ::Float64=0.5, μ₁::Float64=1.0, μ₂::Float64=3.0) -> Tuple{Matrix{Float64}, Vector{Int64}}
 

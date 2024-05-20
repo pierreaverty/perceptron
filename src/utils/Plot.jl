@@ -1,9 +1,8 @@
 module Plot
-
+# --------------------
 using Plots
-
+# --------------------
 export plot_dataset
-
 """
   plot_dataset(X::Matrix{Float64}, Y::Vector{Int64})
 
@@ -37,6 +36,6 @@ function plot_dataset(
         title="Dataset"
     )
 
-    savefig(p, "res/dataset/dataset.png")
+    savefig(p, "../val/dataset/dataset.png")
 end
 end

@@ -1,9 +1,8 @@
 module Symbol
-
+# --------------------
 using LinearAlgebra
-
+# --------------------
 export ∑
-
 """
   ∑(x::Vector{Float64}, y::Vector{Float64}) -> Float64
 

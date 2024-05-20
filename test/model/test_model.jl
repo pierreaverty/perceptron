@@ -1,13 +1,6 @@
-include("../../src/model/Model.jl")
-include("../../src/utils/Symbol.jl")
-include("../../src/data/data.jl")
 # --------------------
-using Test
 using .Model
-using .Symbol
-using .Data
 # --------------------
-
 @testset "Model" begin
     #=
     Test the Model module.

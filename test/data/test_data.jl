@@ -1,9 +1,7 @@
-include("../../src/data/Data.jl")
 # --------------------
-using Test
 using .Data
+using .Model
 # --------------------
-
 @testset "Data" begin
     #=
     Test the Data module.
@@ -16,7 +14,6 @@ using .Data
         =#
         # Load the data
         X, Y = generate_data()
-
         # Print the data and labels
         println("Data:")
         println(X)

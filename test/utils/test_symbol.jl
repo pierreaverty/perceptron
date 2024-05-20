@@ -1,9 +1,6 @@
-include("../../src/utils/Symbol.jl")
 # --------------------
-using Test
 using .Symbol
 # --------------------
-
 @testset "Symbol" begin
     #=
     Test the Symbol module.
