@@ -39,5 +39,4 @@ function plot_dataset(
 
     savefig(p, "res/dataset/dataset.png")
 end
-
 end

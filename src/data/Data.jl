@@ -43,7 +43,7 @@ function generate_data(;
     coord_x = [x₁; x₂]
     coord_y = [y₁; y₂]
 
-    X = hcat(coord_x, coord_y)
+    X = [coord_x coord_y]
 
     Y = [label₁; label₂]
 
