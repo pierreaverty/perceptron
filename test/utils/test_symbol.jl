@@ -1,5 +1,4 @@
 include("../../src/utils/Symbol.jl")
-
 # --------------------
 using Test
 using .Symbol

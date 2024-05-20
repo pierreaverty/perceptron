@@ -19,9 +19,9 @@ Compute the dot product of two vectors.
 # Example
 
 ```julia
-x = [1.0, 2.0, 3.0]
-y = [4.0, 5.0, 6.0]
-dot_product = ∑(x, y)
+X = [1.0, 2.0, 3.0]
+Y = [4.0, 5.0, 6.0]
+dot_product = ∑(X, Y)
 ```
 """
 function ∑(
@@ -30,5 +30,4 @@ function ∑(
 )::Float64
     return dot(x, y)
 end
-
 end

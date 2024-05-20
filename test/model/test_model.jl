@@ -2,7 +2,7 @@ include("../../src/model/Model.jl")
 include("../../src/utils/Symbol.jl")
 # --------------------
 using Test
-using ..Model
+using .Model
 using .Symbol
 # --------------------
 
