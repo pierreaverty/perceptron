@@ -37,6 +37,8 @@ A simple perceptron model for classification.
 
 # Example
 ```julia
+using .Model
+
 W = [0.1, 0.2]
 b = 0.3
 perceptron = Perceptron(W, b)
@@ -61,6 +63,8 @@ Initializes a perceptron with random weights and bias.
 # Example
 
 ```julia
+using .Model
+
 perceptron = init_perceptron(n=2)
 ```
 """
@@ -89,6 +93,7 @@ Predicts the output of a perceptron model.
 # Example
 
 ```julia
+using .Model
 
 W = [0.1, 0.2]
 X = [1.0, 2.0]
@@ -118,6 +123,8 @@ Heaviside step function as an activation function.
 # Example
 
 ```julia
+using .Model
+
 output = ɸ(0.5)
 ```
 """

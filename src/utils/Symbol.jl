@@ -19,6 +19,8 @@ Compute the dot product of two vectors.
 # Example
 
 ```julia
+using .Symbol
+
 X = [1.0, 2.0, 3.0]
 Y = [4.0, 5.0, 6.0]
 dot_product = ∑(X, Y)
