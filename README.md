@@ -62,40 +62,42 @@ The perceptron is a type of artificial neuron used in supervised learning for bi
 
 ### Input and Weights
 
-Given an input vector \( \mathbf{x} = [x_1, x_2, \ldots, x_n] \) and a corresponding weight vector \( \mathbf{w} = [w_1, w_2, \ldots, w_n] \), the perceptron computes a weighted sum of the inputs:
+Given an input vector $\mathbf{x} = [x_1, x_2, \ldots, x_n]$ and a corresponding weight vector $\mathbf{w} = [w_1, w_2, \ldots, w_n]$, the perceptron computes a weighted sum of the inputs:
 
-\[ z = \mathbf{w} \cdot \mathbf{x} + b = \sum\_{i=1}^{n} w_i x_i + b \]
+$z = \mathbf{w} \cdot \mathbf{x} + b = \sum\_{i=1}^{n} w_i x_i + b$
 
-where \( b \) is the bias term.
+where $b$ is the bias term.
 
 ### Activation Function
 
-The perceptron uses a step function as the activation function to determine the output \( y \):
+The perceptron uses a step function as the activation function named heaviside step to determine the output $y$:
 
-\[ y =
+```math
+y =
 \begin{cases}
 1 & \text{if } z > 0 \\
 0 & \text{otherwise}
 \end{cases}
-\]
+```
 
 This can also be expressed as:
 
-\[ y = \text{sign}(z) \]
+$ŷ = \phi(z)$
 
 ### Learning Rule
 
-The perceptron learning algorithm adjusts the weights \( \mathbf{w} \) and bias \( b \) based on the prediction error. For each training sample \( (\mathbf{x}, t) \), where \( t \) is the target label, the weights and bias are updated as follows:
+The perceptron learning algorithm adjusts the weights $\mathbf{w}$ and bias $b$ based on the prediction error. For each training sample $(\mathbf{x}, y)$, where $y$ is the target label, the weights and bias are updated as follows:
 
-\[ \mathbf{w} \leftarrow \mathbf{w} + \Delta \mathbf{w} \]
-\[ b \leftarrow b + \Delta b \]
-
-where the updates \( \Delta \mathbf{w} \) and \( \Delta b \) are given by:
-
-\[ \Delta \mathbf{w} = \eta (t - y) \mathbf{x} \]
-\[ \Delta b = \eta (t - y) \]
-
-Here, \( \eta \) is the learning rate.
+```math
+\mathbf{w} \leftarrow \mathbf{w} + \Delta \mathbf{w}
+b \leftarrow b + \Delta b
+```
+where the updates $\Delta \mathbf{w}$ and $\Delta b$ are given by:
+```math
+\Delta \mathbf{w} = \eta (y - ŷ) \mathbf{x}
+\Delta b = \eta (y - ŷ)
+```
+Here, $\eta$ is the learning rate.
 
 ### Convergence
 
