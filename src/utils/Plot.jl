@@ -36,6 +36,6 @@ function plot_dataset(
         title="Dataset"
     )
 
-    savefig(p, "../val/dataset/dataset.png")
+    savefig(p, "./val/dataset/dataset.png")
 end
 end

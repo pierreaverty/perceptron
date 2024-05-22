@@ -18,6 +18,6 @@ using .Data
         # Plot the dataset
         plot_dataset(X, Y)
 
-        @test isfile("../val/dataset/dataset.png")
+        @test isfile("./val/dataset/dataset.png")
     end
 end
