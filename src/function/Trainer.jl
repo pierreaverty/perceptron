@@ -60,7 +60,7 @@ trainer = init_perceptron_trainer(model, dataset)
 function init_perceptron_trainer(
     model::Perceptron,
     dataset::Tuple{Matrix{Float64},Vector{Int64}},
-    ;epochs::Int64=5,
+    ; epochs::Int64=100,
     η::Float64=0.1
 )::PerceptronTrainer
     return PerceptronTrainer(model, dataset, epochs, η)
