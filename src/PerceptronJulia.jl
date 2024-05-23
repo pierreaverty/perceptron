@@ -6,7 +6,7 @@ include("data/Data.jl")
 include("utils/Plot.jl")
 # --------------------
 using .Model
-using .Trainer
+using .TrainerJulia
 using .Data
 using .Plot
 # --------------------

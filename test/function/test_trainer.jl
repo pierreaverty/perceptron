@@ -1,13 +1,13 @@
 # --------------------
 using .Model
-using .Trainer
+using .TrainerJulia
 using .Data
 # --------------------
-@testset "Trainer" begin
+@testset "TrainerJulia" begin
     #=
     Test the Trainer module.
     =#
-    @testset "PerceptronTrainer" begin
+    @testset "Trainer" begin
         #=
         Test the PerceptronTrainer struct.
 
@@ -26,7 +26,7 @@ using .Data
         )
 
         # Test the type of the returned object
-        @test trainer isa PerceptronTrainer
+        @test trainer isa Trainer
         @test trainer.model isa Perceptron
         @test trainer.dataset isa Tuple
         @test trainer.epochs isa Int64

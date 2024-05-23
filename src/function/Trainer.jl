@@ -1,9 +1,9 @@
-module Trainer
+module TrainerJulia
 include("../model/Model.jl")
 # --------------------
 using ..Model: Perceptron, update!
 # --------------------
-export PerceptronTrainer, init_perceptron_trainer, train!
+export Trainer, init_perceptron_trainer, train!
 
 """
   PerceptronTrainer(model::Perceptron, dataset::Tuple{Matrix{Float64},Vector{Int64}}, epochs::Int64, η::Float64)
@@ -18,7 +18,7 @@ A simple trainer for the perceptron model.
 
 # Example
 ```julia
-using .Trainer
+using .TrainerJulia
 using .Model
 
 model = init_perceptron(n=2)
@@ -26,7 +26,7 @@ dataset = generate_data()
 trainer = init_perceptron_trainer(model, dataset)
 ```
 """
-mutable struct PerceptronTrainer
+mutable struct Trainer
     model::Perceptron
     dataset::Tuple{Matrix{Float64},Vector{Int64}}
     epochs::Int64
@@ -49,7 +49,7 @@ Initializes a trainer for the perceptron model.
 
 # Example
 ```julia
-using .Trainer
+using .TrainerJulia
 using .Model
 
 model = init_perceptron(n=2)
@@ -62,8 +62,8 @@ function init_perceptron_trainer(
     dataset::Tuple{Matrix{Float64},Vector{Int64}},
     ; epochs::Int64=100,
     η::Float64=0.1
-)::PerceptronTrainer
-    return PerceptronTrainer(model, dataset, epochs, η)
+)::Trainer
+    return Trainer(model, dataset, epochs, η)
 end
 
 
@@ -81,7 +81,7 @@ Train the perceptron model.
 
 # Example
 ```julia
-using .Trainer
+using .TrainerJulia
 using .Model
 
 model = init_perceptron(n=2)
@@ -90,7 +90,7 @@ trainer = init_perceptron_trainer(model, dataset)
 model = train!(trainer)
 ```
 """
-function train!(trainer::PerceptronTrainer)
+function train!(trainer::Trainer)
     X, y = trainer.dataset
     for epoch in 1:trainer.epochs
         for i in eachindex(X[:, 1])

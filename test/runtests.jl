@@ -6,7 +6,7 @@ include("../src/PerceptronJulia.jl")
 # --------------------
 using Test
 using .PerceptronJulia
-using .Trainer
+using .TrainerJulia
 using .Model
 using .Data
 # --------------------

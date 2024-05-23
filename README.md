@@ -39,8 +39,8 @@ using PerceptronJulia
 
 # Generate the a random dataset, initialize the perceptron and the trainer
 dataset = generate_data(n_samples=100)
-perceptron = Perceptron(n_features=2)
-trainer = Trainer(
+perceptron = init_perceptron(n_features=2)
+trainer = init_perceptron_trainer(
     perceptron,
     dataset
 )

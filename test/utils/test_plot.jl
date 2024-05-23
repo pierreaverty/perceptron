@@ -2,7 +2,7 @@
 using .Plot
 using .Data
 using .Model
-using .Trainer
+using .TrainerJulia
 # --------------------
 @testset "Plot" begin
     #=
