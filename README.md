@@ -51,7 +51,7 @@ trainer = init_perceptron_trainer(
 # Predict the class of a new data point
 new_datapoint = [0.5, 0.5]
 
-prediction = P(perceptron.W, X, perceptron.b)
+prediction = predict(perceptron, X)
 
 println("The class of the new data point is: $prediction")
 ```

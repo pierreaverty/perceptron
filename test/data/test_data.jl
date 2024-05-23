@@ -15,6 +15,7 @@ using .Model
         # Load the data
         X, Y = generate_data()
         # Print the data and labels
+        println("Testing data generation function...")
         println("Data:")
         println(X)
         println("Labels:")

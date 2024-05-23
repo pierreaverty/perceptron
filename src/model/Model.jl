@@ -1,8 +1,12 @@
 module Model
+
+include("../function/Activation.jl")
+include("../utils/Math.jl")
 # --------------------
-using LinearAlgebra
+using .Activation
+using .Math
 # --------------------
-export Perceptron, init_perceptron, P, ɸ, update!, ∑
+export Perceptron, init_perceptron, predict
 """
     Perceptron(W::Vector{Float64}, b::Float64)
 
@@ -24,15 +28,17 @@ perceptron = Perceptron(W, b)
 mutable struct Perceptron
     W::Vector{Float64}
     b::Float64
+    activation::Function
 end
 
 """
-  init_perceptron(n::Int) -> Perceptron
+  init_perceptron(n::Int, activation::Function=Activation.H) -> Perceptron
 
 Initializes a perceptron with random weights and bias.
 
 # Arguments
 - `n::Int`: Number of input features.
+- `activation::Function=Activation.H`: Activation function.
 
 # Returns
 - `Perceptron`: A perceptron with random weights and bias.
@@ -46,23 +52,23 @@ perceptron = init_perceptron(n=2)
 ```
 """
 function init_perceptron(;
-    n::Int
+    n::Int,
+    activation::Function=Activation.H
 )::Perceptron
     W = randn(n)
     b = randn()
 
-    return Perceptron(W, b)
+    return Perceptron(W, b, activation)
 end
 
 """
-  P(W::Vector{Float64}, X::Vector{Float64}, b::Float64) -> Int64
+  predict(perceptron::Perceptron, X::Vector{Float64}) -> Int64
 
 Predicts the output of a perceptron model.
 
 # Arguments
-- `W::Vector{Float64}`: Weight vector of the perceptron.
+- `perceptron::Perceptron`: Perceptron model.
 - `X::Vector{Float64}`: Input vector.
-- `b::Float64`: Bias of the perceptron.
 
 # Returns
 - `Int64`: Output of the perceptron model.
@@ -72,119 +78,16 @@ Predicts the output of a perceptron model.
 ```julia
 using .Model
 
-W = [0.1, 0.2]
-X = [1.0, 2.0]
-b = 0.3
-output = P(W, X, b)
-```
-"""
-function P(
-    W::Vector{Float64},
-    X::Vector{Float64},
-    b::Float64
-)::Int64
-    return ɸ(∑(W, X) + b)
-end
-
-"""
-  ɸ(x::Float64) -> Float64
-
-Heaviside step function as an activation function.
-
-# Arguments
-- `x::Float64`: Input value.
-
-# Returns
-- `Float64`: Output value of the Heaviside step function.
-
-# Example
-
-```julia
-using .Model
-
-output = ɸ(0.5)
-```
-"""
-function ɸ(
-    x::Float64
-)::Int64
-    return x > 0 ? 1 : 0
-end
-
-"""
-  update!(perceptron::Perceptron, X::Vector{Float64}, y::Int64; η::Float64=0.1) -> Perceptron
-
-Updates the weights and bias of a perceptron model.
-
-# Arguments
-- `perceptron::Perceptron`: Perceptron model.
-- `X::Vector{Float64}`: Input vector.
-- `y::Int64`: True label.
-- `η::Float64`: Learning rate.
-
-# Returns
-- `Perceptron`: Updated perceptron model.
-
-# Example
-
-```julia
-using .Model
-
 perceptron = init_perceptron(n=2)
 X = [1.0, 2.0]
-y = 1
-perceptron = update!(perceptron, X, y)
+
+output = predict(perceptron, X)
 ```
 """
-function update!(
+function predict(
     perceptron::Perceptron,
     X::Vector{Float64},
-    y::Int64,
-    ; η::Float64=0.1
-)::Perceptron
-    # Compute the prediction
-    ŷ = P(perceptron.W, X, perceptron.b)
-
-    # Compute the error
-    δ = y - ŷ
-
-    # Compute the update
-    Δw = η * δ .* X
-    Δb = η * δ
-
-    # Update the weights and bias
-    perceptron.W .+= Δw
-    perceptron.b += Δb
-
-    return perceptron
-end
-
-"""
-  ∑(x::Vector{Float64}, y::Vector{Float64}) -> Float64
-
-Compute the dot product of two vectors.
-
-# Arguments
-- `x::Vector{Float64}`: First vector.
-- `y::Vector{Float64}`: Second vector.
-
-# Returns
-- `Float64`: Dot product of the two vectors.
-
-# Example
-
-```julia
-using .Model
-
-X = [1.0, 2.0, 3.0]
-Y = [4.0, 5.0, 6.0]
-dot_product = ∑(X, Y)
-```
-"""
-function ∑(
-    x::Vector{Float64},
-    y::Vector{Float64}
-)::Float64
-    return dot(x, y)
+)::Int64
+    return perceptron.activation(∑(perceptron.W, X) + perceptron.b)
 end
 end

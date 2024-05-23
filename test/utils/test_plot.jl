@@ -2,7 +2,7 @@
 using .Plot
 using .Data
 using .Model
-using .TrainerJulia
+using .Trainer
 # --------------------
 @testset "Plot" begin
     #=
@@ -36,7 +36,7 @@ using .TrainerJulia
         trainer = init_perceptron_trainer(
             perceptron,
             dataset,
-            epochs=100,
+            epochs=100
         )
 
         # Train the model

@@ -1,13 +1,13 @@
 # --------------------
 using .Model
-using .TrainerJulia
+using .Trainer
 using .Data
 # --------------------
-@testset "TrainerJulia" begin
+@testset "Trainer" begin
     #=
     Test the Trainer module.
     =#
-    @testset "Trainer" begin
+    @testset "PerceptronTrainer" begin
         #=
         Test the PerceptronTrainer struct.
 
@@ -26,7 +26,7 @@ using .Data
         )
 
         # Test the type of the returned object
-        @test trainer isa Trainer
+        @test trainer isa PerceptronTrainer
         @test trainer.model isa Perceptron
         @test trainer.dataset isa Tuple
         @test trainer.epochs isa Int64
@@ -57,8 +57,8 @@ using .Data
         println("Trained weights: ", trained_model.W)
 
         # Test the type of the returned object
-        @test P(trained_model.W, [1.0, 1.0], trained_model.b) == 0
-        @test P(trained_model.W, [3.0, 3.0], trained_model.b) == 1
+        @test predict(trained_model, [1.0, 1.0]) == 0
+        @test predict(trained_model, [3.0, 3.0]) == 1
         @test trained_model isa Perceptron
         @test trained_model.W isa Array{Float64,1}
         @test trained_model.b isa Float64
