@@ -1,5 +1,7 @@
 module Perceptron
 
-greet() = print("Taïaut")
+export Neuron
+
+include("model.jl")
 
 end # module Perceptron
