@@ -1,6 +1,5 @@
 """
     Neuron
-using Base: ForwardOrdering
 
 A single neuron model.
 
@@ -11,6 +10,7 @@ A single neuron model.
 
 # Examples
 ```julia
+julia> using Perceptron
 julia> neuron = Neuron(randn(2, 1), 0.0, x -> x)
 Neuron([0.0; 0.0], 0.0, x -> x)
 ```
@@ -35,6 +35,7 @@ Compute the forward pass of the neuron given the input `x`.
 
 # Examples
 ```julia
+julia> using Perceptron
 julia> neuron = Neuron(randn(2, 1), 0.0, x -> x)
 Neuron([0.0; 0.0], 0.0, x -> x)
 

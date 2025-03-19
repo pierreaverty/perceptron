@@ -25,3 +25,10 @@ end
         @test y(neuron, [1.0, 2.0]) == dot(neuron.W, [1.0, 2.0]) + neuron.β
     end
 end
+
+@testset "Activation Function" begin
+    @testset "Heaviside Step Function" begin
+        @test Activation.θ(0.0) == 1
+        @test Activation.θ(-0.1) == 0
+    end
+end
