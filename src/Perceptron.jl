@@ -1,6 +1,8 @@
 module Perceptron
 
-export Neuron
+using LinearAlgebra
+
+export Neuron, y
 
 include("model.jl")
 
