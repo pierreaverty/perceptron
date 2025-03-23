@@ -3,7 +3,7 @@ using LinearAlgebra
 using Test
 
 @testset "Neuron Initialization" begin
-    neuron = Neuron((2,1), Activation.θ)
+    neuron = Neuron((2, 1), Activation.θ)
 
     @testset "Weights" begin
         @test size(neuron.W) == (1, 2)
@@ -19,7 +19,7 @@ using Test
 end
 
 @testset "Neuron Forward Pass" begin
-    neuron = Neuron((2,1), x -> x)
+    neuron = Neuron((2, 1), x -> x)
 
     @testset "Single Output" begin
         x = [1.0 2.0]
@@ -30,7 +30,7 @@ end
     @testset "Multiple Outputs" begin
         W = zeros(2, 2)
         β = [1.0 1.0]
-        neuron = Neuron((2,2), x -> x)
+        neuron = Neuron((2, 2), x -> x)
 
         x = [1.0 2.0]
         z = neuron.W * x' .+ neuron.β
@@ -48,7 +48,7 @@ end
 
 @testset "Optimization" begin
     @testset "Perceptron Algorithm Update Rule" begin
-        neuron = Neuron((2,1), x -> x)
+        neuron = Neuron((2, 1), x -> x)
         opt = Optimization.PerceptronOptimizer(0.1)
 
         W = copy(neuron.W)
@@ -62,6 +62,6 @@ end
         ΔW, Δβ = Optimization.update(opt, neuron.W, neuron.β, (x, z), z̄)
 
         @test ΔW == W .+ 0.1 .* (z - z̄) .* x
-        @test Δβ == β + 0.1 * (z - z̄)
+        @test Δβ == β .+ 0.1 .* (z - z̄)
     end
 end

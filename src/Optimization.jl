@@ -65,11 +65,13 @@ function update(
         Matrix{Float64}},
     ȳ::Matrix{Float64}
 )::Tuple{Matrix{Float64},Matrix{Float64}}
-    ϵ = D[2] .- ȳ
-    ΔW = W .+ optimizer.η .* ϵ .* D[1]
-    Δβ = β .+ optimizer.η .* ϵ
-    
-    return ΔW, Δβ
+    x, y = D
+    ϵ = y .- ȳ
+
+    ΔW = optimizer.η .* ϵ .* x
+    Δβ = optimizer.η .* ϵ
+
+    return W .+ ΔW, β .+ Δβ
 end
 
 end
