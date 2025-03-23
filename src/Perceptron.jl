@@ -2,9 +2,10 @@ module Perceptron
 
 using LinearAlgebra
 
-export Neuron,  Activation, y
+export Neuron, Activation, Optimization, y
 
-include("activation.jl")
+include("Activation.jl")
+include("Optimization.jl")
 include("model.jl")
 
 end # module Perceptron

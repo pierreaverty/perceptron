@@ -3,11 +3,11 @@ module Activation
 export θ
 
 """
-    θ(z::Float64)
+    θ(z::Float64)::Int64
 
 Heaviside step function, returns 1 if `z` is greater or equal to 0, otherwise returns 0.
 
-# Fields
+# Arguments
 - `z`: Input value
 
 # Examples
@@ -19,7 +19,6 @@ julia> Activation.θ(-0.1)
 0
 ```
 """
-function θ(z::Float64)
-    return z ≥ 0 ? 1 : 0
-end
+θ(z::Float64)::Int64 = z ≥ 0 ? 1 : 0
+
 end
